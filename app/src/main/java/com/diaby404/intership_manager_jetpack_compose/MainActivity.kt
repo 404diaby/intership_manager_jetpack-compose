@@ -42,6 +42,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     Intership_manager_jetpack_composeTheme {
-        Greeting("Android")
+        Greeting("ndroid")
     }
 }
+
+
