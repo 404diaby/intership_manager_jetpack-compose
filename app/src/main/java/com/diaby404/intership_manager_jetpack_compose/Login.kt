@@ -58,7 +58,8 @@ import kotlinx.coroutines.launch
         NavHost(navController = myNavController, startDestination = "onBoarding") {
             composable("onboarding") { Onboarding(myNavController)}
             composable("login") { Login(myNavController) }
-            composable("home") { Home() }
+            composable("signup") { SignUp() }
+            composable("offers") { OffersScreen(myNavController) }
         }
         Login(myNavController)
     }
@@ -74,25 +75,12 @@ import kotlinx.coroutines.launch
         val context = LocalContext.current
 
         fun simulateFirebaseLogin(username: String, password: String) {
-            // Simulation d'un appel Firebase avec un délai de 2 secondes
-
-           /* kotlinx.coroutines.GlobalScope.launch {
-                delay(2000)
-                val success = username == "404diaby" && password == "123"
-                if (success) {
-                    Toast.makeText(context, "Connexion réussie", Toast.LENGTH_SHORT).show()
-                    navController.navigate("home")
-                } else {
-                    Toast.makeText(context, "Échec de la connexion", Toast.LENGTH_SHORT).show()
-                }
-
-            }*/
 
             try {
                 val success = username == "404diaby" && password == "123"
                 if (success) {
                     Toast.makeText(context, "Connexion réussie", Toast.LENGTH_SHORT).show()
-                    navController.navigate("home")
+                    navController.navigate("offers")
                 } else {
                     throw Exception("Id  incorrect")
                 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.diaby404.intership_manager_jetpack_compose.ui.theme.Intership_manager_jetpack_composeTheme
 
@@ -36,21 +37,14 @@ fun AppNavigation() {
         composable("onboarding") { Onboarding(myNavController)}
         composable("login") { Login(myNavController) }
         composable("signup") { SignUp() }
-        composable("home") { Home() }
+        composable("offers") { OffersScreen(myNavController) }
+        composable("offer_input") { OfferInput()  }
     }
 }
 
 
 
-@Composable
-fun Home() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(text = "Bienvenue à la maison !")
-    }
-}
+
 
 
 @Composable
@@ -59,6 +53,19 @@ fun SignUp() {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "Bienvenue à la âde d'inscription !")
+        Text(text = "Bienvenue à la page d'inscription !")
+    }
+}
+
+
+
+
+@Composable
+fun Favorites() {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = "Bienvenue à la page de favoris !")
     }
 }

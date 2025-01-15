@@ -7,13 +7,17 @@ import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,6 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -30,43 +36,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
-
     @SuppressLint("NotConstructor")
     @Composable
     fun Onboarding(navController: NavController) {
 
-
-        Scaffold(
-            /*topBar = {
-                TopAppBar(
-                    colors = topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        titleContentColor = MaterialTheme.colorScheme.primary,
-                    ),
-                    title = {
-                        Text("Top app bar")
-                    }
-                )
-            },
-            bottomBar = {
-                BottomAppBar(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        text = "Bottom app bar",
-                    )
-                }
-            },
-            floatingActionButton = {
-                FloatingActionButton(onClick = { presses++ }) {
-                    Icon(Icons.Default.Add, contentDescription = "Add")
-                }
-            }*/
-        ) { innerPadding ->
+        Scaffold { innerPadding ->
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -79,15 +53,18 @@ import androidx.navigation.compose.rememberNavController
                     Icon(
                         imageVector = Icons.Default.Home,
                         contentDescription = "Home Icon",
-                        tint = Color.Blue,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(40.dp)
                     )
+                    Spacer(Modifier.height(40.dp))
                     Text(
-
+                        color = MaterialTheme.colorScheme.primary,
+                        fontSize = MaterialTheme.typography.headlineMedium.fontSize,
+                        fontWeight = FontWeight(800),
                         text = "Intership Manager"
                     )
-
-                    OutlinedButton(
+                    Spacer(Modifier.height(40.dp))
+                    Button(
                         onClick = {
                             println("Aller a la ge se connecter")
                             navController.navigate("login")
@@ -98,7 +75,6 @@ import androidx.navigation.compose.rememberNavController
                     }
                 }
             }
-
         }
     }
 
@@ -110,7 +86,8 @@ import androidx.navigation.compose.rememberNavController
         NavHost(navController = myNavController, startDestination = "onBoarding") {
             composable("onboarding") { Onboarding(myNavController)}
             composable("login") { Login(myNavController) }
-            composable("home") { Home() }
+            composable("signup") { SignUp() }
+            composable("offers") { OffersScreen(myNavController) }
         }
         Onboarding(myNavController)
     }
