@@ -3,6 +3,7 @@ package com.diaby404.intership_manager_jetpack_compose
 import android.annotation.SuppressLint
 import android.icu.text.CaseMap.Title
 import android.provider.ContactsContract
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,17 +25,15 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-
-class Onboarding {
 
 
     @SuppressLint("NotConstructor")
     @Composable
-    fun OnboardingScreen() {
-
-        val navController = rememberNavController()
+    fun Onboarding(navController: NavController) {
 
 
         Scaffold(
@@ -89,7 +88,11 @@ class Onboarding {
                     )
 
                     OutlinedButton(
-                        onClick = { println("Aller a la ge se connecter") }
+                        onClick = {
+                            println("Aller a la ge se connecter")
+                            navController.navigate("login")
+
+                        }
                     ) {
                         Text("Se Connecter")
                     }
@@ -103,8 +106,12 @@ class Onboarding {
     @Preview(showBackground = true)
     @Composable
     fun DisplayOnboardingPreview() {
-        OnboardingScreen()
+        val myNavController = rememberNavController()
+        NavHost(navController = myNavController, startDestination = "onBoarding") {
+            composable("onboarding") { Onboarding(myNavController)}
+            composable("login") { Login(myNavController) }
+            composable("home") { Home() }
+        }
+        Onboarding(myNavController)
     }
 
-
-}
